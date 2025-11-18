@@ -13,28 +13,47 @@ import javax.swing.ImageIcon;
 
 public class Blackjack{
 
-   static JFrame frame; 
+    static JFrame frame; 
+    static ArrayList<Card> deck;
 
-    private class Card{
+    private static class Card{
         String suit;
         String rank;
-        String value;
+        int value;
 
-        Card(){
+        Card(String suit , String rank , int value){
             this.suit = suit;
             this.rank = rank;
             this.value = value;
         }
-    }
 
-    ArrayList<Card> deck = new ArrayList<Card>();
+        @Override
+        public String toString() {
+            return rank + suit + " (value: " + value + ")";
+        }
+    }
+    
     ArrayList<Card> playerHand = new ArrayList<Card>();
     ArrayList<Card> dealerHand = new ArrayList<Card>();
 
-    String[] suit = {"D" , "A" , "C" , "S"};
-    String[] rank = {"2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" ,"K" ,"Q" ,"J" ,"A"};
-    String[] value = {"2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10", "10" , "10" , "11"};
+    public static ArrayList<Card> generateDeck(){
+        
 
+        String[] suit = {"D" , "H" , "C" , "S"};
+        String[] rank = {"2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" ,"K" ,"Q" ,"J" ,"A"};
+        int[] value = {2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10, 10 ,10 ,11};
+
+        ArrayList<Card> deck = new ArrayList<>();
+
+        for (int i = 0 ; i < suit.length; i++){
+            for (int j = 0 ; j < rank.length ; j++){
+                deck.add(new Card(suit[i], rank[j] , value[j]));
+            }
+        }
+
+        return deck;
+
+    }
 
     static void createFrame(){
 
@@ -74,8 +93,21 @@ public class Blackjack{
         // Creates own colour using RGB scene
     }
 
+    public static void dealHands(){
+        Random random = new Random();
+
+        int index = random.nextInt(deck.size());
+        Card drawnCard = deck.remove(index);
+    }
+
     public static void main(String[] args){
+        deck = generateDeck();
         createFrame();
+        dealHands();
+
+        for (Card c : deck){
+            System.out.println(c);
+        }
 
 
 
