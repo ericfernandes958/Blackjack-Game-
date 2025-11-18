@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Panel;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.Random;
 
 
 import javax.swing.ImageIcon;
@@ -13,7 +15,31 @@ public class Blackjack{
 
    static JFrame frame; 
 
+    private class Card{
+        String suit;
+        String rank;
+        String value;
+
+        Card(){
+            this.suit = suit;
+            this.rank = rank;
+            this.value = value;
+        }
+    }
+
+    ArrayList<Card> deck = new ArrayList<Card>();
+    ArrayList<Card> playerHand = new ArrayList<Card>();
+    ArrayList<Card> dealerHand = new ArrayList<Card>();
+
+    String[] suit = {"D" , "A" , "C" , "S"};
+    String[] rank = {"2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" ,"K" ,"Q" ,"J" ,"A"};
+    String[] value = {"2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10", "10" , "10" , "11"};
+
+
     static void createFrame(){
+
+        Color darkGreen = new Color(0, 100, 0);
+
         frame = new JFrame("Blackjack");
         frame.setSize(650,600);
         frame.setLocation(0,0);
@@ -25,6 +51,7 @@ public class Blackjack{
 
         JPanel panel = new JPanel();
         
+        panel.setBackground(darkGreen);
         panel.setBounds(0,0,650,600);
         panel.setLayout(null);
 
@@ -36,7 +63,7 @@ public class Blackjack{
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
         JLabel hiddenLabel = new JLabel(scaledIcon);
-        hiddenLabel.setBounds(0, 0, 120, 160);
+        hiddenLabel.setBounds(320, 320 , 120, 160);
 
         panel.add(hiddenLabel);
 
@@ -45,14 +72,12 @@ public class Blackjack{
         frame.setVisible(true);
 
         // Creates own colour using RGB scene
-
-
-
-
-        }
+    }
 
     public static void main(String[] args){
         createFrame();
+
+
 
         
     }
