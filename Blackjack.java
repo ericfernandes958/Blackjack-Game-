@@ -33,8 +33,8 @@ public class Blackjack{
         }
     }
     
-    ArrayList<Card> playerHand = new ArrayList<Card>();
-    ArrayList<Card> dealerHand = new ArrayList<Card>();
+    static ArrayList<Card> playerHand = new ArrayList<Card>();
+    static ArrayList<Card> dealerHand = new ArrayList<Card>();
 
     public static ArrayList<Card> generateDeck(){
         
@@ -93,11 +93,23 @@ public class Blackjack{
         // Creates own colour using RGB scene
     }
 
-    public static void dealHands(){
+    public static Card drawCard(){
         Random random = new Random();
-
         int index = random.nextInt(deck.size());
-        Card drawnCard = deck.remove(index);
+        return deck.remove(index);
+    }
+
+    //TODO change the above logic so that the number of cards to be drawn is passed through 
+    //TODO pass the destination of the cards to be drawn e.g player/dealer hand 
+
+
+    public static void dealHands(){
+        Card drawnCard = drawCard();
+
+
+
+
+
     }
 
     public static void main(String[] args){
