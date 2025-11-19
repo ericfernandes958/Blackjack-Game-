@@ -93,18 +93,19 @@ public class Blackjack{
         // Creates own colour using RGB scene
     }
 
-    public static Card drawCard(){
+    public static void drawCard(ArrayList<Card> hand , int n){
         Random random = new Random();
-        int index = random.nextInt(deck.size());
-        return deck.remove(index);
+        
+        for (int i = 0 ; i < n ; i++){
+            int index = random.nextInt(deck.size());
+            Card drawnCard = deck.remove(index);
+            hand.add(drawnCard);
+        }
     }
 
-    //TODO change the above logic so that the number of cards to be drawn is passed through 
-    //TODO pass the destination of the cards to be drawn e.g player/dealer hand 
-
-
     public static void dealHands(){
-        Card drawnCard = drawCard();
+        drawCard(playerHand , 2);
+        drawCard(dealerHand, 1);
 
 
 
